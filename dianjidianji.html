@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>隐藏菜单</title>
+<meta http-equiv="Content-Type" mrc="text/html; charset=gb2312" />
+<style>  
+#menuShow{  
+border: 1px solid #666666;  
+background-color: #EEEEEE;  
+padding: 0px;  
+font-size: 12px;  
+font-family: tahoma;  
+position: absolute;  
+width: 161px;  
+height: auto;  
+}  
+
+#menuSelect{  
+border: 1px solid #999999;  
+background-color: #cccccc;  
+padding: 0px;  
+font-size: 10px;  
+font-family: tahoma;  
+position: absolute;  
+width: 161px;  
+}  
+
+a {  font-family: "tahoma"; font-size: 12px; line-height: 23px; color: #555555; text-decoration: none}  
+a:hover {color: #0066CC; text-decoration: none}  
+</style> 
+</head> 
+<body> 
+<body bgcolor="#FFFFFF" text="#000000">  
+<div id="menuSelect" style=""> <a href="#" onClick="moveOnMenu();moveOffSelector()">   
+  <img src="http://p1.mb5u.com/texiao/click1.gif" border="0"></a></div>  
+<div id="menuShow" style="" align="center"> <a href="#" onClick="moveOffMenu();moveOnSelector()">   
+  <img src="http://p1.mb5u.com/texiao/click.gif" border="0">隐藏菜单</a> <br>
+<a href="/sort/list_1_1.shtml">ASP</a><br>
+<a href="/sort/list_2_1.shtml">PHP</a><br>
+<a href="/sort/list_3_1.shtml">.NET</a><br>
+<a href="/sort/list_11_1.shtml">脚本资源</a><br>
+<a href="/sort/list_11_112_1.shtml">jQuery</a><br>
+<a href="/sort/list_7_1.shtml">电子书籍</a><br>
+<a href="/sort/list_6_1.shtml">工具软件</a>
+</div>  
+<SCRIPT LANGUAGE="JavaScript">  
+Show ="no";  
+var OffX = -200;  
+var PosX =  10;  
+var PosY =  10;  
+var speed        = 5;  
+var increment    = 5;  
+var incrementNS4 = 5; 
+var is_NS = navigator.appName=="Netscape";  
+var is_Ver = parseInt(navigator.appVersion);  
+var is_NS4 = is_NS&&is_Ver>=4&&is_Ver<5;  
+var is_NS5up = is_NS&&is_Ver>=5;  
+
+var MenuX = OffX;  
+var SelX = PosX;  
+var sPosX = PosX;  
+var sOffX = OffX;  
+
+if (Show == "yes") {  
+sPosX = OffX;  
+sOffX = PosX;  
+MenuX = sOffX;  
+SelX = sPosX;  
+}  
+
+if (is_NS4) {  
+increment = incrementNS4;  
+Lq = "document.layers.";  
+Sq = "";  
+eval(Lq+'menuSelect'+Sq+'.left=sPosX');  
+eval(Lq+'menuShow'+Sq+'.left=sOffX');  
+eval(Lq+'menuSelect'+Sq+'.top=PosY');  
+eval(Lq+'menuShow'+Sq+'.top=PosY');  
+} else {  
+Lq = "document.all.";  
+Sq = ".style";  
+document.getElementById('menuSelect').style.left = sPosX+"px";  
+document.getElementById('menuShow').style.left = sOffX+"px";  
+document.getElementById('menuSelect').style.top = PosY+"px";  
+document.getElementById('menuShow').style.top = PosY+"px";  
+}    
+
+function moveOnMenu() {  
+if (MenuX < PosX) {   
+MenuX = MenuX + increment;  
+if (is_NS5up) {  
+document.getElementById('menuShow').style.left = MenuX+"px";  
+} else {  
+eval(Lq+'menuShow'+Sq+'.left=MenuX');  
+}  
+setTimeout('moveOnMenu()',speed);  
+   }  
+}  
+
+function moveOffMenu() {  
+if (MenuX > OffX) {   
+MenuX = MenuX - increment;  
+if (is_NS5up) {  
+document.getElementById('menuShow').style.left = MenuX+"px";  
+} else {  
+eval(Lq+'menuShow'+Sq+'.left=MenuX');  
+}  
+setTimeout('moveOffMenu()',speed);  
+   }  
+}  
+
+function moveOffSelector() {  
+if (SelX > OffX) {   
+SelX = SelX - increment;  
+if (is_NS5up) {  
+document.getElementById('menuSelect').style.left = SelX+"px";  
+} else {  
+eval(Lq+'menuSelect'+Sq+'.left=SelX');  
+}  
+setTimeout('moveOffSelector()',speed);  
+   }  
+}  
+
+function moveOnSelector() {  
+if (SelX < PosX) {   
+SelX = SelX + increment;  
+if (is_NS5up) {  
+document.getElementById('menuSelect').style.left = SelX+"px";  
+} else {  
+eval(Lq+'menuSelect'+Sq+'.left=SelX');  
+}  
+setTimeout('moveOnSelector()',speed);  
+   }  
+}  
+</script>
+</body>
+</html>  
